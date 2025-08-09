@@ -1,0 +1,642 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+PROJECT="mp-landing"
+ZIP="$PROJECT.zip"
+
+# Clean
+rm -rf "$PROJECT" "$ZIP"
+mkdir -p "$PROJECT/assets/css" "$PROJECT/assets/js" "$PROJECT/assets/img" "$PROJECT/assets/icons" "$PROJECT/components"
+
+####################################
+# index.html
+####################################
+cat > "$PROJECT/index.html" <<'HTML'
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mediso Polska — Medycyna nuklearna i hybrydowe obrazowanie</title>
+  <meta name="description" content="Autoryzowany dystrybutor Mediso. AnyScan SPECT/CT/PET, nanoScan PET/MR/CT, gamma kamery, wyposażenie pracowni, serwis ogólnopolski." />
+  <link rel="icon" href="assets/icons/favicon.ico" />
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
+  <meta property="og:title" content="Mediso Polska — Medycyna nuklearna i hybrydowe obrazowanie" />
+  <meta property="og:description" content="AnyScan SPECT/CT/PET, nanoScan PET/MR/CT, wyposażenie, serwis — ogólnopolsko." />
+  <meta property="og:image" content="assets/img/hero-aparatura.jpg" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="/" aria-label="Mediso Polska">
+        <img src="assets/img/logo-mediso.svg" alt="Mediso Polska" height="36" />
+      </a>
+      <nav class="nav" role="navigation" aria-label="Główna nawigacja">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">Menu</button>
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="#o-nas">O nas</a></li>
+          <li><a href="#oferta">Oferta</a></li>
+          <li><a href="#partnerzy">Partnerzy</a></li>
+          <li><a href="service.html">Serwis</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+      <div class="header-cta">
+        <a class="btn btn-outline" href="tel:+48426764110">Biuro: +48 42 676 41 10</a>
+        <a class="btn btn-primary" href="tel:+48426764114">Serwis: +48 42 676 41 14</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="hero-content">
+          <h1 id="hero-heading">Medycyna nuklearna i hybrydowe obrazowanie</h1>
+          <p class="lead">Autoryzowany dystrybutor Mediso w Polsce. AnyScan SPECT/CT/PET, nanoScan PET/MR/CT, gamma kamery, wyposażenie pracowni.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#kontakt">Skontaktuj się</a>
+            <a class="btn btn-secondary" href="#oferta">Zobacz ofertę</a>
+          </div>
+          <ul class="hero-highlights">
+            <li>Kompleksowe wdrożenia, szkolenia i serwis ogólnopolski</li>
+            <li>AnyScan TRIO z potrójną głowicą i kolimacją MPH</li>
+            <li>nanoScan PET/MR/CT, w tym systemy 7T</li>
+          </ul>
+        </div>
+        <div class="hero-media">
+          <img src="assets/img/hero-aparatura.jpg" alt="Aparatura obrazowania hybrydowego Mediso" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <section class="features" aria-labelledby="features-heading">
+      <div class="container">
+        <h2 id="features-heading">Dlaczego Mediso Polska</h2>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <h3>Od 1996</h3>
+            <p>Stałe dostawy, instalacje i wsparcie placówek w całej Polsce.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Wyłączny dystrybutor</h3>
+            <p>Portfolio kliniczne i przedkliniczne Mediso: AnyScan i nanoScan.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Serwis i aplikacje</h3>
+            <p>Przeglądy, naprawy, szkolenia i aktualizacje oprogramowania.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Partnerzy</h3>
+            <p>Biodex, Von Gahlen, Nuvia — kompletne wyposażenie pracowni.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="oferta" class="offer" aria-labelledby="offer-heading">
+      <div class="container">
+        <h2 id="offer-heading">Oferta</h2>
+        <div class="offer-grid">
+          <article class="offer-card">
+            <img src="assets/img/anyscan.jpg" alt="AnyScan SPECT/CT/PET" loading="lazy" />
+            <h3>Aparatura kliniczna — AnyScan SPECT/CT/PET</h3>
+            <p>Diagnostyka i theranostyka, TRIO z potrójną głowicą i MPH.</p>
+            <a class="btn btn-link" href="#kontakt">Zapytaj o AnyScan</a>
+          </article>
+          <article class="offer-card">
+            <img src="assets/img/nanoscan.jpg" alt="nanoScan PET/MR/CT" loading="lazy" />
+            <h3>Przedkliniczna — nanoScan PET/CT, PET/MR, SPECT/CT</h3>
+            <p>Ilościowe obrazowanie, sub-mm rozdzielczość, MRI do 7T.</p>
+            <a class="btn btn-link" href="#kontakt">Zapytaj o nanoScan</a>
+          </article>
+          <article class="offer-card">
+            <img src="assets/img/wyposazenie.jpg" alt="Wyposażenie pracowni medycyny nuklearnej" loading="lazy" />
+            <h3>Wyposażenie i akcesoria</h3>
+            <p>Komory laminarne, mierniki, bramki dozymetryczne, osłony.</p>
+            <a class="btn btn-link" href="#kontakt">Zapytaj o wyposażenie</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="partnerzy" class="partners" aria-labelledby="partners-heading">
+      <div class="container">
+        <h2 id="partners-heading">Partnerzy</h2>
+      <ul class="partners-logos" role="list">
+        <li><img src="assets/img/logo-mediso-ltd.svg" alt="Mediso Ltd." loading="lazy" /></li>
+        <li><img src="assets/img/logo-biodex.svg" alt="Biodex Medical Systems" loading="lazy" /></li>
+        <li><img src="assets/img/logo-von-gahlen.svg" alt="Von Gahlen" loading="lazy" /></li>
+        <li><img src="assets/img/logo-nuvia.svg" alt="Nuvia" loading="lazy" /></li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="case" aria-labelledby="case-heading">
+      <div class="container">
+        <h2 id="case-heading">Instalacje i wdrożenia</h2>
+        <p>Wybrane realizacje: nanoScan PET/CT i SPECT, instalacje AnyScan w ośrodkach klinicznych.</p>
+      </div>
+    </section>
+
+    <section id="o-nas" class="about" aria-labelledby="about-heading">
+      <div class="container">
+        <h2 id="about-heading">O nas</h2>
+        <p>Mediso Polska dostarcza aparaturę medycyny nuklearnej oraz wyposażenie pracowni; doradztwo, instalacje, szkolenia i serwis w całej Polsce.</p>
+        <p>Autoryzowany dystrybutor Mediso (AnyScan, nanoScan), partner: Biodex, Von Gahlen, Nuvia.</p>
+      </div>
+    </section>
+
+    <section class="service" aria-labelledby="service-heading">
+      <div class="container">
+        <h2 id="service-heading">Serwis i wsparcie</h2>
+        <p>Ogólnopolski zespół serwisowy i aplikacyjny: konsultacje, przeglądy, naprawy, części, aktualizacje, szkolenia wdrożeniowe.</p>
+        <div class="service-cta">
+          <a class="btn btn-primary" href="service.html">Zgłoś serwis online</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontakt" class="contact" aria-labelledby="contact-heading">
+      <div class="container">
+        <h2 id="contact-heading">Kontakt</h2>
+        <address class="contact-box">
+          <p><strong>Mediso Polska Sp. z o.o.</strong><br />
+            Al. J. Piłsudskiego 133D, 92-318 Łódź<br />
+            Biuro: <a href="tel:+48426764110">+48 42 676 41 10</a> — <a href="mailto:biuro@mediso.pl">biuro@mediso.pl</a><br />
+            Serwis: <a href="tel:+48426764114">+48 42 676 41 14</a>
+          </p>
+        </address>
+
+        <form class="contact-form" id="contactForm" novalidate>
+          <input type="text" name="website" hidden tabindex="-1" autocomplete="off" />
+          <div class="form-row">
+            <label for="name">Imię i nazwisko</label>
+            <input type="text" id="name" name="name" autocomplete="name" required />
+            <small class="error" aria-live="polite"></small>
+          </div>
+          <div class="form-row">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" autocomplete="email" required />
+            <small class="error" aria-live="polite"></small>
+          </div>
+          <div class="form-row">
+            <label for="message">Wiadomość</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+            <small class="error" aria-live="polite"></small>
+          </div>
+          <div class="form-row checkbox-row">
+            <input type="checkbox" id="consent" name="consent" required />
+            <label for="consent">Wyrażam zgodę na przetwarzanie danych w celu kontaktu.</label>
+            <small class="error" aria-live="polite"></small>
+          </div>
+          <button class="btn btn-primary" type="submit">Wyślij</button>
+          <p class="form-success" hidden>Dziękujemy! Skontaktujemy się wkrótce.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-col">
+        <p>© <span id="year"></span> Mediso Polska Sp. z o.o.</p>
+        <p><small>NIP 7281111998 • KRS 0000008102 • REGON 471325473</small></p>
+        <p><small><a href="privacy.html">Polityka prywatności</a> • <a href="robots.txt">robots.txt</a> • <a href="sitemap.xml">sitemap.xml</a></small></p>
+      </div>
+      <ul class="footer-links" role="list">
+        <li><a href="#o-nas">O nas</a></li>
+        <li><a href="#oferta">Oferta</a></li>
+        <li><a href="#partnerzy">Partnerzy</a></li>
+        <li><a href="service.html">Serwis</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
+HTML
+
+####################################
+# service.html
+####################################
+cat > "$PROJECT/service.html" <<'HTML'
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zgłoszenie serwisowe — Mediso Polska</title>
+  <meta name="description" content="Zgłoszenie serwisowe Mediso Polska: wypełnij formularz, aby uzyskać pomoc techniczną." />
+  <link rel="icon" href="assets/icons/favicon.ico" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Mediso Polska">
+        <img src="assets/img/logo-mediso.svg" alt="Mediso Polska" height="36" />
+      </a>
+      <nav class="nav" aria-label="Nawigacja">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">Menu</button>
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="index.html#oferta">Oferta</a></li>
+          <li><a href="index.html#partnerzy">Partnerzy</a></li>
+          <li><a href="index.html#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+      <div class="header-cta">
+        <a class="btn btn-primary" href="tel:+48426764114">Serwis: +48 42 676 41 14</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="service-page">
+    <section class="contact" aria-labelledby="service-heading">
+      <div class="container">
+        <h1 id="service-heading">Zgłoszenie serwisowe</h1>
+        <p>Wypełnij formularz, a skontaktujemy się niezwłocznie.</p>
+        <form class="contact-form" id="serviceForm" novalidate>
+          <input type="text" name="website" hidden tabindex="-1" autocomplete="off" />
+          <div class="form-row">
+            <label for="facility">Placówka / dział</label>
+            <input type="text" id="facility" name="facility" required />
+            <small class="error" aria-live="polite"></small>
+          </div>
+          <div class="form-row">
+            <label for="device">Urządzenie</label>
+            <select id="device" name="device" required>
+              <option value="">— wybierz —</option>
+              <option>AnyScan SPECT</option>
+              <option>AnyScan SPECT/CT</option>
+              <option>AnyScan SPECT/CT/PET</option>
+              <option>nanoScan PET/CT</option>
+              <option>nanoScan PET/MR</option>
+              <option>nanoScan SPECT/CT</option>
+              <option>Inne (wyposażenie)</option>
+            </select>
+            <small class="error" aria-live="polite"></small>
+          </div>
+          <div class="form-row">
+            <label for="serial">Nr seryjny (jeśli znany)</label>
+            <input type="text" id="serial" name="serial" />
+            <small class="error" aria-live="polite"></small>
+          </div>
+          <div class="form-row">
+            <label for="location">Lokalizacja (miasto / adres)</label>
+            <input type="text" id="location" name="location" required />
+            <small class="error" aria-live="polite"></small>
+          </div>
+          <div class="form-row">
+            <label for="priority">Krytyczność</label>
+            <select id="priority" name="priority" required>
+              <option value="">— wybierz —</option>
+              <option>Niska</option>
+              <option>Średnia</option>
+              <option>Wysoka (awaria)</option>
+            </select>
+            <small class="error" aria-live="polite"></small>
+          </div>
+          <div class="form-row">
+            <label for="desc">Opis problemu</label>
+            <textarea id="desc" name="desc" rows="5" required></textarea>
+            <small class="error" aria-live="polite"></small>
+          </div>
+          <div class="form-row">
+            <label for="contactName">Osoba kontaktowa</label>
+            <input type="text" id="contactName" name="contactName" required />
+            <small class="error" aria-live="polite"></small>
+          </div>
+          <div class="form-row">
+            <label for="contactEmail">E-mail</label>
+            <input type="email" id="contactEmail" name="contactEmail" required />
+            <small class="error" aria-live="polite"></small>
+          </div>
+          <div class="form-row">
+            <label for="contactPhone">Telefon</label>
+            <input type="tel" id="contactPhone" name="contactPhone" />
+            <small class="error" aria-live="polite"></small>
+          </div>
+          <div class="form-row checkbox-row">
+            <input type="checkbox" id="consentSrv" name="consentSrv" required />
+            <label for="consentSrv">Wyrażam zgodę na przetwarzanie danych w celu obsługi zgłoszenia.</label>
+            <small class="error" aria-live="polite"></small>
+          </div>
+          <button class="btn btn-primary" type="submit">Wyślij zgłoszenie</button>
+          <p class="form-success" hidden>Dziękujemy! Zgłoszenie zostało przesłane.</p>
+        </form>
+        <p class="muted">Można też zadzwonić bezpośrednio: <a href="tel:+48426764114">+48 42 676 41 14</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-col">
+        <p>© <span id="year"></span> Mediso Polska Sp. z o.o.</p>
+        <p><small>NIP 7281111998 • KRS 0000008102 • REGON 471325473</small></p>
+      </div>
+      <ul class="footer-links" role="list">
+        <li><a href="index.html#oferta">Oferta</a></li>
+        <li><a href="index.html#partnerzy">Partnerzy</a></li>
+        <li><a href="index.html#kontakt">Kontakt</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
+HTML
+
+####################################
+# privacy.html
+####################################
+cat > "$PROJECT/privacy.html" <<'HTML'
+<!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Polityka prywatności — Mediso Polska</title><link rel="stylesheet" href="assets/css/styles.css"></head><body><main class="container" style="padding:40px 0"><h1>Polityka prywatności</h1><p>Ta strona używa niezbędnych plików cookies do działania serwisu. Dane z formularzy kontaktowych przetwarzane są wyłącznie w celu kontaktu i obsługi zgłoszeń. Administratorem danych jest Mediso Polska Sp. z o.o., Al. J. Piłsudskiego 133D, 92-318 Łódź.</p><p>W sprawach danych osobowych prosimy o kontakt: <a href="mailto:biuro@mediso.pl">biuro@mediso.pl</a>.</p><p>Po zakończeniu celu przetwarzania dane mogą zostać zanonimizowane lub usunięte, zgodnie z obowiązującymi przepisami.</p><p><a class="btn btn-outline" href="index.html">Powrót</a></p></main></body></html>
+HTML
+
+####################################
+# 404.html
+####################################
+cat > "$PROJECT/404.html" <<'HTML'
+<!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Strona nie znaleziona — Mediso Polska</title><link rel="stylesheet" href="assets/css/styles.css"></head><body><main class="container" style="padding:40px 0"><h1>404 — Strona nie znaleziona</h1><p>Wygląda na to, że podany adres nie istnieje.</p><p><a class="btn btn-primary" href="index.html">Wróć na stronę główną</a></p></main></body></html>
+HTML
+
+####################################
+# sitemap.xml
+####################################
+cat > "$PROJECT/sitemap.xml" <<'XML'
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://twojadomena.pl/</loc></url>
+  <url><loc>https://twojadomena.pl/service.html</loc></url>
+</urlset>
+XML
+
+####################################
+# robots.txt
+####################################
+cat > "$PROJECT/robots.txt" <<'TXT'
+User-agent: *
+Allow: /
+Sitemap: https://twojadomena.pl/sitemap.xml
+TXT
+
+####################################
+# CSS
+####################################
+cat > "$PROJECT/assets/css/styles.css" <<'CSS'
+:root{
+  --bg:#ffffff;
+  --text:#101828;
+  --muted:#475467;
+  --primary:#027a9a;
+  --primary-600:#016581;
+  --secondary:#0ea5e9;
+  --border:#e5e7eb;
+  --card:#f8fafc;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--text); background:var(--bg); line-height:1.6;
+}
+.container{max-width:1120px; margin:0 auto; padding:0 16px}
+img{max-width:100%; height:auto; display:block}
+
+.site-header{
+  position:sticky; top:0; z-index:100;
+  background:#fff; border-bottom:1px solid var(--border);
+}
+.header-inner{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 0}
+.brand{display:flex; align-items:center; gap:8px; text-decoration:none; color:inherit}
+.nav-toggle{display:none}
+.nav-menu{display:flex; gap:16px; list-style:none; padding:0; margin:0}
+.nav-menu a{color:var(--muted); text-decoration:none; font-weight:500}
+.nav-menu a:hover{color:var(--text)}
+.header-cta{display:flex; gap:8px}
+
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:10px 16px; border-radius:10px; text-decoration:none; font-weight:600; border:1px solid transparent; cursor:pointer}
+.btn-primary{background:var(--primary); color:#fff}
+.btn-primary:hover{background:var(--primary-600)}
+.btn-secondary{background:#e0f2fe; color:#0369a1}
+.btn-outline{border-color:var(--border); color:var(--text); background:#fff}
+.btn-link{color:var(--primary); text-decoration:none; font-weight:600}
+.btn-link:hover{text-decoration:underline}
+
+.hero{padding:48px 0; background:linear-gradient(180deg,#f0f9ff,transparent)}
+.hero .container{display:grid; grid-template-columns:1.2fr 1fr; gap:32px; align-items:center}
+.lead{font-size:1.125rem; color:var(--muted)}
+.hero-actions{display:flex; gap:12px; margin:16px 0}
+.hero-highlights{list-style:disc; padding-left:18px; color:var(--muted)}
+
+.features{padding:40px 0; background:#fff}
+.feature-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px}
+.feature-card{background:var(--card); border:1px solid var(--border); padding:16px; border-radius:12px}
+
+.offer{padding:40px 0}
+.offer-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+.offer-card{background:#fff; border:1px solid var(--border); border-radius:12px; overflow:hidden}
+.offer-card h3{margin:12px 16px 8px}
+.offer-card p{margin:0 16px 12px}
+.offer-card .btn-link{margin:0 16px 16px}
+
+.case,.about,.partners,.service,.contact{padding:40px 0}
+.partners-logos{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; list-style:none; padding:0; margin:0}
+
+.service-cta{margin-top:12px}
+
+.contact-box{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; margin-bottom:16px}
+.contact-form{display:grid; gap:12px; max-width:640px}
+.form-row{display:grid; gap:6px}
+.checkbox-row{display:grid; grid-template-columns:auto 1fr; gap:8px; align-items:start}
+input,textarea,select{
+  border:1px solid var(--border); border-radius:10px; padding:10px 12px; font:inherit;
+}
+input:focus,textarea:focus,select:focus,.btn:focus,.nav-menu a:focus{outline:2px solid #38bdf8; outline-offset:2px}
+.error{color:#b91c1c; font-size:.875rem; min-height:1em}
+.form-success{color:#065f46; font-weight:600}
+.muted{color:var(--muted)}
+
+.site-footer{border-top:1px solid var(--border); background:#fff}
+.footer-inner{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:24px 0}
+.footer-links{list-style:none; display:flex; gap:12px; margin:0; padding:0}
+
+.sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0}
+
+/* Responsive */
+@media (max-width: 960px){
+  .hero .container{grid-template-columns:1fr}
+  .feature-grid{grid-template-columns:repeat(2,1fr)}
+  .offer-grid{grid-template-columns:1fr 1fr}
+  .partners-logos{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width: 640px){
+  .nav-toggle{display:inline-flex; align-items:center; justify-content:center; padding:8px 12px; border:1px solid var(--border); border-radius:10px; background:#fff}
+  .nav-menu{display:none; position:absolute; right:16px; top:60px; background:#fff; border:1px solid var(--border); border-radius:12px; padding:8px; flex-direction:column; width:220px}
+  .nav-menu.show{display:flex}
+  .header-cta{display:none}
+  .offer-grid{grid-template-columns:1fr}
+}
+CSS
+
+####################################
+# JS
+####################################
+cat > "$PROJECT/assets/js/main.js" <<'JS'
+(function(){
+  const navToggle = document.querySelector('.nav-toggle');
+  const navMenu = document.getElementById('nav-menu');
+  if(navToggle && navMenu){
+    navToggle.addEventListener('click', ()=>{
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!expanded));
+      navMenu.classList.toggle('show');
+    });
+  }
+
+  const y = document.getElementById('year');
+  if(y){ y.textContent = new Date().getFullYear(); }
+
+  function validateEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+  function setError(el, msg){
+    const err = el.parentElement.querySelector('.error');
+    if(err){ err.textContent = msg || ''; }
+  }
+
+  function bindForm(formId, fields){
+    const form = document.getElementById(formId);
+    if(!form) return;
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      let valid = true;
+
+      // Honeypot
+      const pot = form.querySelector('input[name="website"]');
+      if(pot && pot.value){ return; }
+
+      fields.forEach(f=>{
+        const el = form.querySelector('#'+f.id);
+        if(!el) return;
+        setError(el, '');
+        if(f.required && ((el.type==='checkbox' && !el.checked) || !String(el.value||'').trim())){
+          setError(el, 'To pole jest wymagane'); valid=false; return;
+        }
+        if(f.type==='email' && el.value && !validateEmail(el.value)){
+          setError(el, 'Podaj poprawny adres e-mail'); valid=false;
+        }
+      });
+
+      if(!valid) return;
+
+      // Optional: EmailJS (podmień klucze i dołącz skrypt emailjs, jeśli chcesz)
+      const EMAILJS_PUBLIC_KEY = '';
+      const EMAILJS_SERVICE = '';
+      const EMAILJS_TEMPLATE = '';
+
+      const success = form.querySelector('.form-success');
+      try{
+        if(EMAILJS_PUBLIC_KEY && EMAILJS_SERVICE && EMAILJS_TEMPLATE && window.emailjs){
+          emailjs.init(EMAILJS_PUBLIC_KEY);
+          const data = new FormData(form);
+          const params = Object.fromEntries(data.entries());
+          await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, params);
+        }else{
+          const data = new FormData(form);
+          const body = Array.from(data.entries()).map(([k,v])=>`${k}: ${v}`).join('%0D%0A');
+          window.location.href = `mailto:biuro@mediso.pl?subject=Kontakt%20ze%20strony&body=${body}`;
+        }
+        if(success){ success.hidden=false; }
+        form.reset();
+      }catch(err){
+        alert('Wystąpił błąd podczas wysyłki. Spróbuj ponownie.');
+      }
+    });
+  }
+
+  bindForm('contactForm', [
+    {id:'name', required:true},
+    {id:'email', required:true, type:'email'},
+    {id:'message', required:true},
+    {id:'consent', required:true}
+  ]);
+
+  bindForm('serviceForm', [
+    {id:'facility', required:true},
+    {id:'device', required:true},
+    {id:'serial', required:false},
+    {id:'location', required:true},
+    {id:'priority', required:true},
+    {id:'desc', required:true},
+    {id:'contactName', required:true},
+    {id:'contactEmail', required:true, type:'email'},
+    {id:'contactPhone', required:false},
+    {id:'consentSrv', required:true}
+  ]);
+})();
+JS
+
+####################################
+# Ikony i grafiki — placeholdery
+####################################
+
+# Minimalny favicon SVG
+cat > "$PROJECT/assets/icons/favicon.svg" <<'SVG'
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="12" fill="#027a9a"/>
+  <path d="M18 42c4-10 10-16 18-18-3 3-5 7-6 12 5-3 9-4 12-3-3 7-9 11-18 12-2 0-4-1-6-3z" fill="#fff"/>
+</svg>
+SVG
+
+# Prosty ICO placeholder (pusty binarnie nie tworzymy — zostaw SVG/PNG)
+# Utwórz apple-touch-icon placeholder (pusty)
+convert -size 180x180 canvas:white "$PROJECT/assets/icons/apple-touch-icon.png" 2>/dev/null || true
+
+# SVG logo placeholdery
+cat > "$PROJECT/assets/img/logo-mediso.svg" <<'SVG'
+<svg xmlns="http://www.w3.org/2000/svg" width="140" height="36" viewBox="0 0 140 36">
+  <text x="0" y="24" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#027a9a">Mediso Polska</text>
+</svg>
+SVG
+
+for f in logo-mediso-ltd.svg logo-biodex.svg logo-von-gahlen.svg logo-nuvia.svg; do
+cat > "$PROJECT/assets/img/$f" <<'SVG'
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="48" viewBox="0 0 160 48">
+  <rect x="1" y="1" width="158" height="46" rx="6" fill="#f0f9ff" stroke="#bae6fd"/>
+  <text x="80" y="28" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#0369a1" text-anchor="middle">Partner</text>
+</svg>
+SVG
+done
+
+# Obrazy hero/produkty — puste pliki jako placeholdery
+: > "$PROJECT/assets/img/hero-aparatura.jpg"
+: > "$PROJECT/assets/img/anyscan.jpg"
+: > "$PROJECT/assets/img/nanoscan.jpg"
+: > "$PROJECT/assets/img/wyposazenie.jpg"
+
+####################################
+# Komponenty (opcjonalne pod CMS)
+####################################
+echo "<header><!-- header component --></header>" > "$PROJECT/components/header.html"
+echo "<section><!-- hero component --></section>" > "$PROJECT/components/hero.html"
+echo "<section><!-- offer cards component --></section>" > "$PROJECT/components/offer-cards.html"
+echo "<section><!-- partners component --></section>" > "$PROJECT/components/partners.html"
+echo "<section><!-- service component --></section>" > "$PROJECT/components/service.html"
+echo "<section><!-- contact component --></section>" > "$PROJECT/components/contact.html"
+echo "<footer><!-- footer component --></footer>" > "$PROJECT/components/footer.html"
+
+####################################
+# ZIP
+####################################
+( cd "$PROJECT" && zip -qr "../$ZIP" . )
+
+echo "Gotowe: $PROJECT oraz $ZIP"
